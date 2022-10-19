@@ -89,6 +89,11 @@ h2 {
     box-shadow: 3px 3px 0px 1px green;
 }
 
+.btn:hover {
+    background-color: olivedrab;
+    cursor: pointer;
+}
+
 .footer {
     background-color: olive;
     color: black;
@@ -136,4 +141,8 @@ h2 {
 
 a:link, a:visited, a:hover, a:active {
     color: black;
+}
+
+.fa-power-off:hover {
+    cursor: pointer;
 }
