@@ -1,12 +1,13 @@
 const grid = document.querySelector('.grid');
 const defaultGrid = document.querySelector('.grid-text');
 const slider = document.querySelector('.slider');
-const defaultGridValue = slider.getAttribute('value');
+const defaultGridSize = slider.getAttribute('value');
 const apply = document.querySelector('.btn');
 const reset = document.querySelector('.fa-power-off');
+let gridSize = 16;
 
-defaultGrid.textContent =  `${defaultGridValue}x${defaultGridValue}`;
-setGrid(defaultGridValue);
+defaultGrid.textContent =  `${defaultGridSize}x${defaultGridSize}`;
+setGrid(defaultGridSize);
 
 
 grid.addEventListener('mouseover', function (e) {
@@ -16,11 +17,14 @@ grid.addEventListener('mouseover', function (e) {
 });
 
 slider.addEventListener('input', function (e) {
-    defaultGrid.textContent = `${e.target.value}x${e.target.value}`;
+    gridSize = e.target.value;
+    defaultGrid.textContent = `${gridSize}x${gridSize}`;
     
 });
 
 reset.addEventListener('click', () => resetGrid());
+
+apply.addEventListener('click', () => applyGrid());
 
 function setGrid(n) {
     for (let i = 0; i < n; i++) {
@@ -39,5 +43,14 @@ function resetGrid() {
   while (grid.firstChild) {
     grid.removeChild(grid.lastChild);
   }
-  setGrid(defaultGridValue);
+  slider.value = defaultGridSize;
+  defaultGrid.textContent = `${defaultGridSize}x${defaultGridSize}`;
+  setGrid(defaultGridSize);
+}
+
+function applyGrid() {
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
+      }
+      setGrid(gridSize);
 }
